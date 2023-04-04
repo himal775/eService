@@ -53,6 +53,8 @@ class AuthProvider {
       required String email,
       required String jobRole,
       required String experience,
+      required String location,
+      required String phoneNumber,
       required String password}) async {
     try {
       final response = await FirebaseAuth.instance
@@ -62,8 +64,13 @@ class AuthProvider {
       final userdata = FirebaseFirestore.instance.collection(jobRole).doc(uid);
 
       userdata.set({
+        'Id': uid,
         'FirstName': fullName,
         'email': email,
+        'Ratings': 0,
+        "Location": location,
+        "Phone Number": phoneNumber,
+        "Orders": [],
         'experience': experience,
         'uid': uid,
       });

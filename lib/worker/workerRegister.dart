@@ -19,6 +19,8 @@ class _workerSignUpPageState extends State<workerSignUpPage> {
   final passwordController = TextEditingController();
   final repasswordController = TextEditingController();
   final experienceController = TextEditingController();
+  final locationController = TextEditingController();
+  final phoneController = TextEditingController();
 
   final _form = GlobalKey<FormState>();
   String initialValue = "Select";
@@ -110,6 +112,38 @@ class _workerSignUpPageState extends State<workerSignUpPage> {
                 height: 10,
               ),
               const Text(
+                "Phone",
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 50,
+                decoration:
+                    const BoxDecoration(color: Colors.white, boxShadow: [
+                  BoxShadow(blurRadius: 1, spreadRadius: 1, color: Colors.grey)
+                ]),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null) {
+                      return "Please fill this form";
+                    } else {}
+                  },
+                  controller: phoneController,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.email),
+                      border: InputBorder.none,
+                      hintText: "Enter your phone"),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              const Text(
                 " Job Role",
                 style: TextStyle(
                     color: Colors.black54,
@@ -181,45 +215,44 @@ class _workerSignUpPageState extends State<workerSignUpPage> {
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.verified_user_outlined),
                       border: InputBorder.none,
-                      hintText: "  Enter your experience"),
+                      hintText: "  Enter your experience (months)"),
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              // const Text(
-              //   "Password",
-              //   style: TextStyle(
-              //       color: Colors.black54,
-              //       fontWeight: FontWeight.bold,
-              //       fontSize: 20),
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // Container(
-              //   height: 50,
-              //   decoration:
-              //       const BoxDecoration(color: Colors.white, boxShadow: [
-              //     BoxShadow(blurRadius: 1, spreadRadius: 1, color: Colors.grey)
-              //   ]),
-              //   child: TextFormField(
-              //     validator: (value) {
-              //       if (value == null) {
-              //         return "Please fill this form";
-              //       } else {}
-              //     },
-              //     controller: passwordController,
-              //     decoration: const InputDecoration(
-              //         prefixIcon: Icon(Icons.verified),
-              //         suffixIcon: Icon(Icons.visibility),
-              //         border: InputBorder.none,
-              //         hintText: "Enter your password"),
-              //   ),
-              // ),
-
               const Text(
-                "Create Password",
+                "Location",
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 50,
+                decoration:
+                    const BoxDecoration(color: Colors.white, boxShadow: [
+                  BoxShadow(blurRadius: 1, spreadRadius: 1, color: Colors.grey)
+                ]),
+                child: TextFormField(
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null) {
+                      return "Please fill this form";
+                    } else {}
+                  },
+                  controller: locationController,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.location_on),
+                      border: InputBorder.none,
+                      hintText: "  Enter your location"),
+                ),
+              ),
+              const Text(
+                "Password",
                 style: TextStyle(
                     color: Colors.black54,
                     fontWeight: FontWeight.bold,
@@ -295,6 +328,8 @@ class _workerSignUpPageState extends State<workerSignUpPage> {
                         fullName: fullNameController.text.trim(),
                         experience: experienceController.text.trim(),
                         jobRole: initialValue,
+                        location: locationController.text.trim(),
+                        phoneNumber: phoneController.text.trim(),
                         password: passwordController.text.trim());
                     if (response == "Success") {
                       Get.to(() => const LoginPage());

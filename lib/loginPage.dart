@@ -5,6 +5,7 @@ import 'package:online/customer/homePage.dart';
 import 'package:online/customer/mainPage.dart';
 import 'package:online/provider/authProvider.dart';
 import 'package:online/customer/customerRegister.dart';
+import 'package:online/provider/automaticLocation.dart';
 import 'package:online/register.dart';
 
 class LoginPage extends StatefulWidget {
@@ -23,6 +24,12 @@ class _LoginPageState extends State<LoginPage> {
   bool isTap = false;
   bool keepLogin = false;
   bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    AutomaticAddress().getAddressFromLatLng();
+  }
 
   @override
   Widget build(BuildContext context) {

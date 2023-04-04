@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:online/customer/workerList.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomerHomePage extends StatefulWidget {
   const CustomerHomePage({super.key});
@@ -10,6 +11,21 @@ class CustomerHomePage extends StatefulWidget {
 }
 
 class _CustomerHomePageState extends State<CustomerHomePage> {
+  String locationData = "";
+  @override
+  void initState() {
+    super.initState();
+    getLocation();
+  }
+
+  void getLocation() async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    String data = sharedPrefs.getString("Location") ?? "No Address found";
+    setState(() {
+      locationData = data;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,245 +36,257 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: GridView(
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Get.to(() => const WorkerList(workerType: "Cleaner"));
-              },
-              child: Container(
-                height: 150,
-                width: 150,
-                decoration:
-                    const BoxDecoration(color: Colors.white, boxShadow: [
-                  BoxShadow(
-                      blurRadius: 0.5,
-                      spreadRadius: 0.5,
-                      color: Colors.grey,
-                      offset: Offset(0.75, 0.75))
-                ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: Image.asset("asset/cleaner.png"),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "Cleaner",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.lightGreen),
-                    ),
-                  ],
-                ),
-              ),
+            child: Row(
+              children: [const Icon(Icons.location_on), Text(locationData)],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Get.to(() => const WorkerList(workerType: "Plumber"));
-              },
-              child: Container(
-                height: 150,
-                width: 150,
-                decoration:
-                    const BoxDecoration(color: Colors.white, boxShadow: [
-                  BoxShadow(
-                      blurRadius: 0.5,
-                      spreadRadius: 0.5,
-                      color: Colors.grey,
-                      offset: Offset(0.75, 0.75))
-                ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Image.asset("asset/plumber.png")),
-                    const SizedBox(
-                      height: 20,
+          Expanded(
+            child: GridView(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => const WorkerList(workerType: "Cleaner"));
+                    },
+                    child: Container(
+                      height: 150,
+                      width: 150,
+                      decoration:
+                          const BoxDecoration(color: Colors.white, boxShadow: [
+                        BoxShadow(
+                            blurRadius: 0.5,
+                            spreadRadius: 0.5,
+                            color: Colors.grey,
+                            offset: Offset(0.75, 0.75))
+                      ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Image.asset("asset/cleaner.png"),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "Cleaner",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                color: Colors.lightGreen),
+                          ),
+                        ],
+                      ),
                     ),
-                    const Text(
-                      "Plumber",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.lightGreen),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => const WorkerList(workerType: "Plumber"));
+                    },
+                    child: Container(
+                      height: 150,
+                      width: 150,
+                      decoration:
+                          const BoxDecoration(color: Colors.white, boxShadow: [
+                        BoxShadow(
+                            blurRadius: 0.5,
+                            spreadRadius: 0.5,
+                            color: Colors.grey,
+                            offset: Offset(0.75, 0.75))
+                      ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.asset("asset/plumber.png")),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "Plumber",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                color: Colors.lightGreen),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => const WorkerList(workerType: "Gardener"));
+                    },
+                    child: Container(
+                      height: 150,
+                      width: 150,
+                      decoration:
+                          const BoxDecoration(color: Colors.white, boxShadow: [
+                        BoxShadow(
+                            blurRadius: 0.5,
+                            spreadRadius: 0.5,
+                            color: Colors.grey,
+                            offset: Offset(0.75, 0.75))
+                      ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.asset("asset/gardener.png")),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "Gardener",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                color: Colors.lightGreen),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => const WorkerList(workerType: "Carpenter"));
+                    },
+                    child: Container(
+                      height: 150,
+                      width: 150,
+                      decoration:
+                          const BoxDecoration(color: Colors.white, boxShadow: [
+                        BoxShadow(
+                            blurRadius: 0.5,
+                            spreadRadius: 0.5,
+                            color: Colors.grey,
+                            offset: Offset(0.75, 0.75))
+                      ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.asset("asset/carpenter.png")),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "Carpenter",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                color: Colors.lightGreen),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => const WorkerList(workerType: "Electrician"));
+                    },
+                    child: Container(
+                      height: 150,
+                      width: 150,
+                      decoration:
+                          const BoxDecoration(color: Colors.white, boxShadow: [
+                        BoxShadow(
+                            blurRadius: 0.5,
+                            spreadRadius: 0.5,
+                            color: Colors.grey,
+                            offset: Offset(0.75, 0.75))
+                      ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.asset("asset/electrician.png")),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "Electrician",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                color: Colors.lightGreen),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => const WorkerList(workerType: "Painter"));
+                    },
+                    child: Container(
+                      height: 150,
+                      width: 150,
+                      decoration:
+                          const BoxDecoration(color: Colors.white, boxShadow: [
+                        BoxShadow(
+                            blurRadius: 0.5,
+                            spreadRadius: 0.5,
+                            color: Colors.grey,
+                            offset: Offset(0.75, 0.75))
+                      ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.asset("asset/painter.png")),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "Painter",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                color: Colors.lightGreen),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Get.to(() => const WorkerList(workerType: "Gardener"));
-              },
-              child: Container(
-                height: 150,
-                width: 150,
-                decoration:
-                    const BoxDecoration(color: Colors.white, boxShadow: [
-                  BoxShadow(
-                      blurRadius: 0.5,
-                      spreadRadius: 0.5,
-                      color: Colors.grey,
-                      offset: Offset(0.75, 0.75))
-                ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Image.asset("asset/gardener.png")),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "Gardener",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.lightGreen),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Get.to(() => const WorkerList(workerType: "Carpenter"));
-              },
-              child: Container(
-                height: 150,
-                width: 150,
-                decoration:
-                    const BoxDecoration(color: Colors.white, boxShadow: [
-                  BoxShadow(
-                      blurRadius: 0.5,
-                      spreadRadius: 0.5,
-                      color: Colors.grey,
-                      offset: Offset(0.75, 0.75))
-                ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Image.asset("asset/carpenter.png")),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "Carpenter",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.lightGreen),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Get.to(() => const WorkerList(workerType: "Electrician"));
-              },
-              child: Container(
-                height: 150,
-                width: 150,
-                decoration:
-                    const BoxDecoration(color: Colors.white, boxShadow: [
-                  BoxShadow(
-                      blurRadius: 0.5,
-                      spreadRadius: 0.5,
-                      color: Colors.grey,
-                      offset: Offset(0.75, 0.75))
-                ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Image.asset("asset/electrician.png")),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "Electrician",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.lightGreen),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Get.to(() => const WorkerList(workerType: "Painter"));
-              },
-              child: Container(
-                height: 150,
-                width: 150,
-                decoration:
-                    const BoxDecoration(color: Colors.white, boxShadow: [
-                  BoxShadow(
-                      blurRadius: 0.5,
-                      spreadRadius: 0.5,
-                      color: Colors.grey,
-                      offset: Offset(0.75, 0.75))
-                ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Image.asset("asset/painter.png")),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "Painter",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.lightGreen),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

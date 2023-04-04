@@ -41,7 +41,15 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [const Icon(Icons.location_on), Text(locationData)],
+              children: [
+                const Icon(Icons.location_on),
+                Flexible(
+                  child: Text(
+                    locationData,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
+              ],
             ),
           ),
           Expanded(

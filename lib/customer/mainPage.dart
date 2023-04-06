@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online/customer/homePage.dart';
+import 'package:online/customer/myOrderPage.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({super.key, required this.index});
@@ -12,7 +13,7 @@ class _MainPageState extends State<MainPage> {
   @override
   List pages = [
     const CustomerHomePage(),
-    const CustomerHomePage(),
+    const myOrderPage(),
     const CustomerHomePage()
   ];
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class _MainPageState extends State<MainPage> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.home_repair_service), label: "Service"),
+                icon: Icon(Icons.home_repair_service), label: "My Orders"),
             BottomNavigationBarItem(icon: Icon(Icons.people), label: "Profile"),
           ]),
       body: pages.elementAt(widget.index),

@@ -61,7 +61,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: () {
-                      Get.to(() => const WorkerList(workerType: "Cleaner"));
+                      Get.to(() => WorkerList(
+                            workerType: "Cleaner",
+                            location: locationData,
+                          ));
                     },
                     child: Container(
                       height: 150,
@@ -101,7 +104,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: () {
-                      Get.to(() => const WorkerList(workerType: "Plumber"));
+                      Get.to(() => WorkerList(
+                            workerType: "Plumber",
+                            location: locationData,
+                          ));
                     },
                     child: Container(
                       height: 150,
@@ -140,7 +146,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: () {
-                      Get.to(() => const WorkerList(workerType: "Gardener"));
+                      Get.to(() => WorkerList(
+                            workerType: "Gardener",
+                            location: locationData,
+                          ));
                     },
                     child: Container(
                       height: 150,
@@ -179,7 +188,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: () {
-                      Get.to(() => const WorkerList(workerType: "Carpenter"));
+                      Get.to(() => WorkerList(
+                            workerType: "Carpenter",
+                            location: locationData,
+                          ));
                     },
                     child: Container(
                       height: 150,
@@ -218,7 +230,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: () {
-                      Get.to(() => const WorkerList(workerType: "Electrician"));
+                      Get.to(() => WorkerList(
+                            workerType: "Electrician",
+                            location: locationData,
+                          ));
                     },
                     child: Container(
                       height: 150,
@@ -257,7 +272,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: () {
-                      Get.to(() => const WorkerList(workerType: "Painter"));
+                      Get.to(() => WorkerList(
+                            workerType: "Painter",
+                            location: locationData,
+                          ));
                     },
                     child: Container(
                       height: 150,

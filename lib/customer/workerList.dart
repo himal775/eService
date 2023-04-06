@@ -5,8 +5,11 @@ import 'package:online/customer/paymentPage.dart';
 
 class WorkerList extends StatelessWidget {
   final String workerType;
-
-  const WorkerList({required this.workerType});
+  final String location;
+  WorkerList({
+    required this.workerType,
+    required this.location,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +122,12 @@ class WorkerList extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              Get.to(() => PaymentMethod());
+                              Get.to(() => PaymentMethod(
+                                    jobRole: workerType,
+                                    location: location,
+                                    phoneNumber: data['Phone Number'],
+                                    docId: data['Id'],
+                                  ));
                             },
                             child: Container(
                               height: 35,

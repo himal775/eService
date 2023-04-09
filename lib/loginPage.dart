@@ -23,7 +23,8 @@ class _LoginPageState extends State<LoginPage> {
   final _form = GlobalKey<FormState>();
   bool isTap = false;
   bool keepLogin = false;
-  bool isLoading = false;
+  bool isCustomerLoading = false;
+  bool isWorkerLoading = false;
 
   @override
   void initState() {
@@ -193,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(20)),
                       child: Center(
-                        child: isLoading
+                        child: isCustomerLoading
                             ? const Center(
                                 child: CircularProgressIndicator(
                                 color: Colors.white,
@@ -211,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
 
                       if (_form.currentState!.validate()) {
                         setState(() {
-                          isLoading = true;
+                          isCustomerLoading = true;
                         });
                         final response = await ref.read(authprovider).userlogin(
                             usernameController.text.trim(),
@@ -219,7 +220,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         if (response != "Successful") {
                           setState(() {
-                            isLoading = false;
+                            isCustomerLoading = false;
                           });
                           if (mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -233,7 +234,7 @@ class _LoginPageState extends State<LoginPage> {
                                 index: 0,
                               ));
                           setState(() {
-                            isLoading = false;
+                            isCustomerLoading = false;
                           });
                         }
                       } else {
@@ -253,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(20)),
                       child: Center(
-                        child: isLoading
+                        child: isWorkerLoading
                             ? const Center(
                                 child: CircularProgressIndicator(
                                 color: Colors.white,
@@ -271,7 +272,7 @@ class _LoginPageState extends State<LoginPage> {
 
                       if (_form.currentState!.validate()) {
                         setState(() {
-                          isLoading = true;
+                          isWorkerLoading = true;
                         });
                         final response = await ref.read(authprovider).userlogin(
                             usernameController.text.trim(),
@@ -279,7 +280,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         if (response != "Successful") {
                           setState(() {
-                            isLoading = false;
+                            isWorkerLoading = false;
                           });
                           if (mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -293,7 +294,7 @@ class _LoginPageState extends State<LoginPage> {
                                 index: 0,
                               ));
                           setState(() {
-                            isLoading = false;
+                            isWorkerLoading = false;
                           });
                         }
                       } else {

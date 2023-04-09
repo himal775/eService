@@ -39,7 +39,6 @@ class AuthProvider {
         'email': email,
         'uid': uid,
       });
-
       return "Success";
     } on FirebaseAuthException catch (error) {
       return "$error";

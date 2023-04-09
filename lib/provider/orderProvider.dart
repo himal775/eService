@@ -30,4 +30,28 @@ class OrderProvider {
       return "";
     }
   }
+
+  Future<String> myOrders(
+      {required String workerName,
+      required String totalAmount,
+      required String workerLocation,
+      required String phoneNumber,
+
+      required String ratings}) async {
+    try {
+      final id = FirebaseAuth.instance.currentUser!.uid;
+      final userdb = FirebaseFirestore.instance.collection("Order").doc(id);
+      userdb.set({
+        "workerName": workerName,
+        "workerLocation":workerLocation,
+        "totalAmount":totalAmount,
+        "ratings":ratings,
+        "phoneNumber":phoneNumber
+      });
+
+      return "Success";
+    } catch (err) {
+      return "";
+    }
+  }
 }

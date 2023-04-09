@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online/customer/homePage.dart';
 import 'package:online/customer/myOrderPage.dart';
+import 'package:online/customer/profilePage.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({super.key, required this.index});
@@ -14,20 +15,34 @@ class _MainPageState extends State<MainPage> {
   List pages = [
     const CustomerHomePage(),
     const myOrderPage(),
-    const CustomerHomePage()
+    const ProfilePage()
   ];
+  int selectedItem = 0;
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      selectedItem = widget.index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: widget.index,
-          onTap: (value) {},
+          currentIndex: selectedItem,
+          onTap: (value) {
+            setState(() {
+              selectedItem = value;
+            });
+          },
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_repair_service), label: "My Orders"),
             BottomNavigationBarItem(icon: Icon(Icons.people), label: "Profile"),
           ]),
-      body: pages.elementAt(widget.index),
+      body: pages.elementAt(selectedItem),
     );
   }
 }

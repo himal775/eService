@@ -9,7 +9,9 @@ class myOrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text("My Order"),
+        ),
         body: FutureBuilder<QuerySnapshot>(
             future: FirebaseFirestore.instance.collection("Order").get(),
             builder:
@@ -27,7 +29,7 @@ class myOrderPage extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      height: 120,
+                      height: 150,
                       width: double.infinity,
                       decoration: const BoxDecoration(
                           color: Colors.white,
@@ -43,7 +45,7 @@ class myOrderPage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Row(
                                   children: [
@@ -55,77 +57,96 @@ class myOrderPage extends StatelessWidget {
                                       width: 10,
                                     ),
                                     Text(
-                                      data['FirstName'],
+                                      "${data['workerName']}",
                                       style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
+                                        fontSize: 16,
+                                      ),
                                     ),
+                                    const SizedBox(
+                                      width: 70,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Icon(
+                                          Icons.star,
+                                          color: Colors.yellow,
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          color: Colors.yellow,
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          color: Colors.yellow,
+                                        )
+                                      ],
+                                    )
                                   ],
                                 ),
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                Row(
-                                  children: const [
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.yellow,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.yellow,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.yellow,
-                                    )
-                                  ],
-                                )
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
+                          Padding(
+                            padding: EdgeInsets.only(right: 8.0, left: 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(
+                                  Icons.phone,
+                                  color: Colors.grey,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "${data['phoneNumber']}",
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  height: 35,
-                                  width: 150,
-                                  decoration: const BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: const Center(
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8, right: 8),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.location_on,
+                                  color: Colors.grey,
+                                ),
+                                Flexible(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      "Order",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
+                                      "${data['workerLocation']}",
+                                      style: const TextStyle(fontSize: 16),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                height: 35,
-                                width: 150,
-                                decoration: const BoxDecoration(
-                                    color: Colors.blueAccent,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
-                                child: const Center(
-                                  child: Text(
-                                    "View details",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8, right: 8),
+                            child: Row(
+                              children: [
+                                Flexible(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Total amount: ${data['totalAmount']}",
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           )
                         ],
                       ),

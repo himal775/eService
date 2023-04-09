@@ -93,27 +93,7 @@ class WorkerList extends StatelessWidget {
                           ],
                         ),
                       ),
-                      // Row(
-                      //   children: [
-                      //     Row(
-                      //       children: [
-                      //         const Icon(
-                      //           Icons.phone,
-                      //           color: Colors.grey,
-                      //         ),
-                      //         const SizedBox(
-                      //           width: 10,
-                      //         ),
-                      //         Text(
-                      //           data['Phone Number'],
-                      //           style: const TextStyle(
-                      //             fontSize: 18,
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
+                      
                       const SizedBox(
                         height: 10,
                       ),
@@ -127,6 +107,7 @@ class WorkerList extends StatelessWidget {
                                     location: location,
                                     phoneNumber: data['Phone Number'],
                                     docId: data['Id'],
+                                    workerName: data['FirstName'],
                                   ));
                             },
                             child: Container(

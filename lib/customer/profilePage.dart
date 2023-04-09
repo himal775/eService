@@ -22,6 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
           title: const Text("Profile"),
         ),
         body: Consumer(builder: (context, ref, child) {
+          print(uid);
           return StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection('userDetails')

@@ -6,16 +6,19 @@ import 'package:online/customer/mainPage.dart';
 import 'package:online/provider/orderProvider.dart';
 
 class PaymentMethod extends StatefulWidget {
-  PaymentMethod(
-      {super.key,
-      required this.jobRole,
-      required this.location,
-      required this.phoneNumber,
-      required this.docId});
+  PaymentMethod({
+    super.key,
+    required this.jobRole,
+    required this.location,
+    required this.phoneNumber,
+    required this.docId,
+    required this.workerName
+  });
   String jobRole;
   String location;
   String phoneNumber;
   String docId;
+  String workerName;
 
   @override
   State<PaymentMethod> createState() => _PaymentMethodState();
@@ -131,6 +134,12 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       phoneNumber: widget.phoneNumber,
                       docId: widget.docId,
                       paymentStatus: true);
+                await ref.read(orderProvider).myOrders(
+                      workerName: widget.workerName,
+                      totalAmount: "Rs 10,180",
+                      workerLocation: widget.location,
+                      phoneNumber: widget.phoneNumber,
+                      ratings: "5");
                   if (response == "Success") {
                     Get.to(() => MainPage(
                           index: 0,

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:online/customer/myOrderPage.dart';
 
 final orderProvider = Provider((ref) => OrderProvider());
 
@@ -36,17 +37,18 @@ class OrderProvider {
       required String totalAmount,
       required String workerLocation,
       required String phoneNumber,
-
+      required String userId,
       required String ratings}) async {
     try {
       final id = FirebaseAuth.instance.currentUser!.uid;
       final userdb = FirebaseFirestore.instance.collection("Order").doc(id);
       userdb.set({
+        "userId": userId,
         "workerName": workerName,
-        "workerLocation":workerLocation,
-        "totalAmount":totalAmount,
-        "ratings":ratings,
-        "phoneNumber":phoneNumber
+        "workerLocation": workerLocation,
+        "totalAmount": totalAmount,
+        "ratings": ratings,
+        "phoneNumber": phoneNumber
       });
 
       return "Success";

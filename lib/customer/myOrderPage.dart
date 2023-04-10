@@ -200,7 +200,7 @@ class UserPage extends StatelessWidget {
               );
             }
           } else {
-            return CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
@@ -222,6 +222,6 @@ Future<DocumentSnapshot> getUserDocumentSnapshot(String userId) async {
     return querySnapshot.docs.first;
   } else {
     // No matching document found
-    throw Exception('User not found');
+    throw Exception('You have no orders');
   }
 }

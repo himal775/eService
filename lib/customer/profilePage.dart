@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:online/loginPage.dart';
+import 'package:online/provider/authProvider.dart';
 
 final uid = FirebaseAuth.instance.currentUser!.uid;
 
@@ -66,10 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     InkWell(
                       onTap: () async {
-                        // final response = await ref.read(authprovider).logout();
-                        // if (response == "Success") {
-                        //   Get.to(() => ());
-                        // }
+                        Get.to(() => LoginPage());
                       },
                       child: const ListTile(
                           leading: Icon(Icons.email),

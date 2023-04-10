@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
@@ -5,15 +6,16 @@ import 'package:online/customer/homePage.dart';
 import 'package:online/customer/mainPage.dart';
 import 'package:online/provider/orderProvider.dart';
 
+final userId = FirebaseAuth.instance.currentUser!.uid;
+
 class PaymentMethod extends StatefulWidget {
-  PaymentMethod({
-    super.key,
-    required this.jobRole,
-    required this.location,
-    required this.phoneNumber,
-    required this.docId,
-    required this.workerName
-  });
+  PaymentMethod(
+      {super.key,
+      required this.jobRole,
+      required this.location,
+      required this.phoneNumber,
+      required this.docId,
+      required this.workerName});
   String jobRole;
   String location;
   String phoneNumber;
@@ -134,7 +136,8 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       phoneNumber: widget.phoneNumber,
                       docId: widget.docId,
                       paymentStatus: true);
-                await ref.read(orderProvider).myOrders(
+                  await ref.read(orderProvider).myOrders(
+                      userId: userId,
                       workerName: widget.workerName,
                       totalAmount: "Rs 10,180",
                       workerLocation: widget.location,

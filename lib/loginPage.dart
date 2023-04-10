@@ -7,6 +7,7 @@ import 'package:online/provider/authProvider.dart';
 import 'package:online/customer/customerRegister.dart';
 import 'package:online/provider/automaticLocation.dart';
 import 'package:online/register.dart';
+import 'package:online/worker/workerMain.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -290,7 +291,7 @@ class _LoginPageState extends State<LoginPage> {
                         } else if (response == "Loading") {
                           Get.defaultDialog(middleText: "Loading..");
                         } else {
-                          Get.to(() => MainPage(
+                          Get.to(() => WorkerMainPage(
                                 index: 0,
                               ));
                           setState(() {

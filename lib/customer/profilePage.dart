@@ -18,11 +18,13 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const Text("Profile"),
+          automaticallyImplyLeading: false,
+          title: const Text(
+            "Profile",
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         body: Consumer(builder: (context, ref, child) {
-          print(uid);
           return StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection('userDetails')

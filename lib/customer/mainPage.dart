@@ -12,11 +12,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   @override
-  List pages = [
-    const CustomerHomePage(),
-    const myOrderPage(),
-    const ProfilePage()
-  ];
+  List pages = [const CustomerHomePage(), UserPage(), const ProfilePage()];
   int selectedItem = 0;
   @override
   void initState() {

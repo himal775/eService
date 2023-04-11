@@ -189,13 +189,57 @@ class UserPage extends StatelessWidget {
               return Center(child: Text('${snapshot.error}'));
             } else {
               var userData = snapshot.data!.data() as Map<String, dynamic>;
-              String name = userData['phoneNumber'];
-              return Scaffold(
-                appBar: AppBar(
-                  title: Text('User: $name'),
-                ),
-                body: Center(
-                  child: Text('Name: $name'),
+
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 200,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey, spreadRadius: 2),
+                      ],
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Worker Name: ${userData['workerName']}",
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Worker Location: ${userData['workerLocation']}",
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Phone Number: ${userData['phoneNumber']}",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Total Amount: ${userData['totalAmount']}",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Payment Status: Completed",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               );
             }

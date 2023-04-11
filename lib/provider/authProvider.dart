@@ -61,6 +61,17 @@ class AuthProvider {
 
       final uid = response.user!.uid;
       final userdata = FirebaseFirestore.instance.collection(jobRole).doc(uid);
+      final workerData =
+          FirebaseFirestore.instance.collection("Worker Details").doc(uid);
+      workerData.set({
+        "Role": jobRole,
+        'Id': uid,
+        'FirstName': fullName,
+        'email': email,
+        'Ratings': 0,
+        "Location": location,
+        "Phone Number": phoneNumber,
+      });
 
       userdata.set({
         'Id': uid,

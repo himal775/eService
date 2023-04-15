@@ -60,6 +60,70 @@ class SignUpPage extends StatelessWidget {
                 height: 10,
               ),
               const Text(
+                "Phone Number",
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 50,
+                decoration:
+                    const BoxDecoration(color: Colors.white, boxShadow: [
+                  BoxShadow(blurRadius: 1, spreadRadius: 1, color: Colors.grey)
+                ]),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null) {
+                      return "Please fill this form";
+                    } else {}
+                  },
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.phone),
+                      border: InputBorder.none,
+                      hintText: "Enter your phone number"),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "Address",
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 50,
+                decoration:
+                    const BoxDecoration(color: Colors.white, boxShadow: [
+                  BoxShadow(blurRadius: 1, spreadRadius: 1, color: Colors.grey)
+                ]),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null) {
+                      return "Please fill this form";
+                    } else {}
+                  },
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.location_on),
+                      border: InputBorder.none,
+                      hintText: "Enter your address"),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              const Text(
                 "Email",
                 style: TextStyle(
                     color: Colors.black54,

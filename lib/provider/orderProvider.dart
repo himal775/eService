@@ -32,6 +32,31 @@ class OrderProvider {
     }
   }
 
+  Future<String> postReview({
+    // required String jobRole,
+    required String docId,
+    required String review,
+    required double ratings,
+  }) async {
+    try {
+      final userName = FirebaseAuth.instance.currentUser!.displayName;
+      final userdb =
+          FirebaseFirestore.instance.collection("Electrician").doc(docId);
+      userdb.update({
+        'review': FieldValue.arrayUnion([
+          {
+            "review": review,
+            "userName": userName,
+            "paymentStatus": ratings,
+          }
+        ])
+      });
+      return "Success";
+    } catch (err) {
+      return "";
+    }
+  }
+
   Future<String> myOrders(
       {required String workerName,
       required String totalAmount,

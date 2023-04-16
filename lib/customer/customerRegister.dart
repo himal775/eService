@@ -9,6 +9,8 @@ class SignUpPage extends StatelessWidget {
   final fullNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final addressController = TextEditingController();
+  final phoneNumberController = TextEditingController();
 
   final _form = GlobalKey<FormState>();
 
@@ -81,14 +83,14 @@ class SignUpPage extends StatelessWidget {
                       return "Please fill this form";
                     } else {}
                   },
-                  controller: emailController,
+                  controller: phoneNumberController,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.phone),
                       border: InputBorder.none,
                       hintText: "Enter your phone number"),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               const Text(
@@ -113,14 +115,14 @@ class SignUpPage extends StatelessWidget {
                       return "Please fill this form";
                     } else {}
                   },
-                  controller: emailController,
+                  controller: addressController,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.location_on),
                       border: InputBorder.none,
                       hintText: "Enter your address"),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               const Text(

@@ -62,14 +62,14 @@ class UserPage extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           "Phone Number: ${userData['phoneNumber']}",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           "Total Amount: ${userData['totalAmount']}",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                       const Padding(
@@ -84,7 +84,7 @@ class UserPage extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             Get.to(() => Review(
-                                  uid: userId,
+                                  uid: userData['workerId'],
                                 ));
                           },
                           child: Container(

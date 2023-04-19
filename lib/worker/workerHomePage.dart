@@ -9,9 +9,16 @@ import 'package:flutter/material.dart';
 
 final userId = FirebaseAuth.instance.currentUser!.uid;
 
-class WorkerPage extends StatelessWidget {
+class WorkerPage extends StatefulWidget {
   const WorkerPage({super.key});
 
+  @override
+  State<WorkerPage> createState() => _WorkerPageState();
+}
+
+class _WorkerPageState extends State<WorkerPage> {
+  bool isConfirmed = false;
+  String confirm = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,44 +123,73 @@ class WorkerPage extends StatelessWidget {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Center(
-                                        child: Container(
-                                          height: 40,
-                                          width: 150,
-                                          decoration: const BoxDecoration(
-                                              color: Colors.green,
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(20))),
-                                          child: const Center(
-                                              child: Text(
-                                            "Confirm",
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          )),
+                                  isConfirmed
+                                      ? Center(
+                                          child: const Text(
+                                              "Your order has been Confirmed"),
+                                        )
+                                      : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Center(
+                                              child: InkWell(
+                                                onTap: () {
+                                                  setState(() {
+                                                    isConfirmed = true;
+                                                    confirm = "Confirmed";
+                                                  });
+                                                },
+                                                child: Container(
+                                                  height: 40,
+                                                  width: 150,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                          color: Colors.green,
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          20))),
+                                                  child: const Center(
+                                                      child: Text(
+                                                    "Confirm",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  )),
+                                                ),
+                                              ),
+                                            ),
+                                            Center(
+                                              child: InkWell(
+                                                onTap: () {
+                                                  setState(() {
+                                                    isConfirmed = false;
+                                                    confirm = "Cancelled";
+                                                  });
+                                                },
+                                                child: Container(
+                                                  height: 40,
+                                                  width: 150,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                          color: Colors.red,
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          20))),
+                                                  child: const Center(
+                                                      child: Text(
+                                                    "Cancel",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  )),
+                                                ),
+                                              ),
+                                            )
+                                          ],
                                         ),
-                                      ),
-                                      Center(
-                                        child: Container(
-                                          height: 40,
-                                          width: 150,
-                                          decoration: const BoxDecoration(
-                                              color: Colors.red,
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(20))),
-                                          child: const Center(
-                                              child: Text(
-                                            "Cancel",
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          )),
-                                        ),
-                                      )
-                                    ],
-                                  ),
                                 ],
                               ),
                             ),

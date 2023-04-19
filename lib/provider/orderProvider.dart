@@ -40,16 +40,13 @@ class OrderProvider {
   }) async {
     try {
       final userName = FirebaseAuth.instance.currentUser!.displayName;
-      final userdb =
-          FirebaseFirestore.instance.collection("Electrician").doc(docId);
-      userdb.update({
-        'review': FieldValue.arrayUnion([
-          {
-            "review": review,
-            "userName": userName,
-            "paymentStatus": ratings,
-          }
-        ])
+      final userdb = FirebaseFirestore.instance.collection("Review").doc(docId);
+      print(docId);
+      userdb.set({
+        "workerId": docId,
+        "review": review,
+        "userName": userName,
+        "Ratings": ratings,
       });
       return "Success";
     } catch (err) {
@@ -63,12 +60,14 @@ class OrderProvider {
       required String workerLocation,
       required String phoneNumber,
       required String userId,
+      required String workerId,
       required String ratings}) async {
     try {
       final id = FirebaseAuth.instance.currentUser!.uid;
       final userdb = FirebaseFirestore.instance.collection("Order").doc(id);
       userdb.set({
         "userId": userId,
+        "workerId": workerId,
         "workerName": workerName,
         "workerLocation": workerLocation,
         "totalAmount": totalAmount,
@@ -78,7 +77,7 @@ class OrderProvider {
 
       return "Success";
     } catch (err) {
-      return "";
+      return err.toString();
     }
   }
 }

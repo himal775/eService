@@ -107,7 +107,7 @@ class _WorkerListState extends State<WorkerList> {
                                         width: 10,
                                       ),
                                       Text(
-                                        data['FirstName'],
+                                        data['FirstName'] ?? "",
                                         style: const TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
@@ -147,9 +147,10 @@ class _WorkerListState extends State<WorkerList> {
                                     Get.to(() => PaymentMethod(
                                           jobRole: widget.workerType,
                                           location: widget.location,
-                                          phoneNumber: data['Phone Number'],
-                                          docId: data['Id'],
-                                          workerName: data['FirstName'],
+                                          phoneNumber:
+                                              data['Phone Number'] ?? "",
+                                          docId: data['Id'] ?? "",
+                                          workerName: data['FirstName'] ?? "",
                                         ));
                                   },
                                   child: Container(
@@ -179,6 +180,7 @@ class _WorkerListState extends State<WorkerList> {
                                           phoneNumber:
                                               data['Phone Number'] ?? "",
                                           ratings: data['ratings'] ?? "",
+                                          workerId: data['Id'],
                                         ));
                                   },
                                   child: Container(

@@ -137,6 +137,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       docId: widget.docId,
                       paymentStatus: true);
                   await ref.read(orderProvider).myOrders(
+                      workerId: widget.docId,
                       userId: userId,
                       workerName: widget.workerName,
                       totalAmount: "Rs 10,180",
@@ -147,6 +148,8 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     Get.to(() => MainPage(
                           index: 0,
                         ));
+                  } else {
+                    print(response);
                   }
                 },
                 child: Container(

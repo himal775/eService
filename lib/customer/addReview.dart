@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
+import 'package:online/customer/homePage.dart';
+import 'package:online/customer/mainPage.dart';
 import 'package:online/provider/orderProvider.dart';
 
 class Review extends StatefulWidget {
@@ -85,11 +88,15 @@ class _ReviewState extends State<Review> {
                         hintText: "Write your review",
                         suffixIcon: InkWell(
                             onTap: () async {
+                              print(widget.uid);
                               ref.read(orderProvider).postReview(
                                   // jobRole: widget.jobRole,
                                   docId: widget.uid,
                                   review: commentsController.text.trim(),
                                   ratings: ratings);
+                              Get.to(() => MainPage(
+                                    index: 0,
+                                  ));
                             },
                             child: const Icon(Icons.send,
                                 color: Color(0xFF990009)))),
